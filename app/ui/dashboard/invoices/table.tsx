@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { UpdateInvoice, DeleteInvoice } from '@/app/ui/invoices/buttons';
-import InvoiceStatus from '@/app/ui/invoices/status';
+import { UpdateInvoice, DeleteInvoice } from '@/app/ui/dashboard/invoices/buttons';
+import InvoiceStatus from '@/app/ui/dashboard/invoices/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredInvoices } from '@/app/lib/data';
 
@@ -89,8 +89,7 @@ export default async function InvoicesTable({
                         src={invoice.image_url}
                         className="rounded-full"
                         width={28}
-                        height={28}
-                      />
+                        height={28} alt={''}                      />
                       <p>{invoice.name}</p>
                     </div>
                   </td>
