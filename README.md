@@ -15,12 +15,12 @@ Next.js API called unstable_noStore inside Server Components or data fetching fu
  1. At the page level, with the loading.tsx file.
  2. For specific components, with <Suspense>.
 
- ### Streaming a whole page with [loading.tsx](./app/ui/dashboard/(overview)/loading.tsx)
-In the /app/dashboard folder, create a new file called [loading.tsx](./app/ui/dashboard/(overview)/loading.tsx).
-[loading.tsx](./app/ui/dashboard/(overview)/loading.tsx) is a special Next.js file built on top of Suspense, it allows you to create fallback UI to show as a replacement while page content loads.
+ ### Streaming a whole page with [loading.tsx](./app/(ui)/dashboard/(overview)/loading.tsx)
+In the /app/dashboard folder, create a new file called [loading.tsx](./app/(ui)/dashboard/(overview)/loading.tsx).
+[loading.tsx](./app/(ui)/dashboard/(overview)/loading.tsx) is a special Next.js file built on top of Suspense, it allows you to create fallback UI to show as a replacement while page content loads.
 
 ### Adding loading skeletons 
-A loading skeleton is a simplified version of the UI. Many websites use them as a placeholder (or fallback) to indicate to users that the content is loading. Any UI you embed into [loading.tsx](./app/ui/dashboard/(overview)/loading.tsx)  will be embedded as part of the static file, and sent first. Then, the rest of the dynamic content will be streamed from the server to the client.
+A loading skeleton is a simplified version of the UI. Many websites use them as a placeholder (or fallback) to indicate to users that the content is loading. Any UI you embed into [loading.tsx](./app/(ui)/dashboard/(overview)/loading.tsx) will be embedded as part of the static file, and sent first. Then, the rest of the dynamic content will be streamed from the server to the client.
 
 ##  🍀 Mutating data
 
