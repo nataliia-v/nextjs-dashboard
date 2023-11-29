@@ -21,3 +21,15 @@ In the /app/dashboard folder, create a new file called [loading.tsx](./app/ui/da
 
 ### Adding loading skeletons 
 A loading skeleton is a simplified version of the UI. Many websites use them as a placeholder (or fallback) to indicate to users that the content is loading. Any UI you embed into [loading.tsx](./app/ui/dashboard/(overview)/loading.tsx)  will be embedded as part of the static file, and sent first. Then, the rest of the dynamic content will be streamed from the server to the client.
+
+##  🍀 Mutating data
+
+### Create a Server Action
+React Server Actions allow you to run asynchronous code directly on the server. They eliminate the need to create API endpoints to mutate your data. Instead, you write asynchronous functions that execute on the server and can be invoked from your Client or Server Components.
+
+#### Using forms with Server Actions (create [actions.ts](./app/lib/actions.ts))
+Server Actions are also deeply integrated with Next.js caching. When a form is submitted through a Server Action, not only can you use the action to mutate data, but you can also revalidate the associated cache using APIs like revalidatePath and revalidateTag.
+
+##### Form validation
+To handle type validation, I'll use Zod, a TypeScript-first validation library.
+In [actions.ts](./app/lib/actions.ts) file, imported Zod and defined a schema that matches the shape of form object. This schema will validate the formData before saving it to a database.
