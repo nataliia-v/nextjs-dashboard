@@ -1,7 +1,7 @@
-'use client';  /* error.tsx needs to be a Client Component. */
- 
+'use client'; /* error.tsx needs to be a Client Component. */
+
 import Error from '@/app/(ui)/error';
- 
+
 export default function DashboardError({
   error,
   reset,
@@ -9,7 +9,5 @@ export default function DashboardError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  return (
-    <Error error={error} reset={reset}/>
-  );
+  return <Error error={error} reset={reset} />;
 }
