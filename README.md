@@ -33,3 +33,10 @@ Server Actions are also deeply integrated with Next.js caching. When a form is s
 ##### Form validation
 To handle type validation, I'll use Zod, a TypeScript-first validation library.
 In [actions.ts](./app/lib/actions.ts) file, imported Zod and defined a schema that matches the shape of form object. This schema will validate the formData before saving it to a database.
+
+##  🍀 Handling errors
+For example Error component for invoices:
+[error.tsx](./app/(ui)/dashboard/invoices/error.tsx) needs to be a Client Component.
+Error Component accepts two props:
+error: This object is an instance of JavaScript's native Error object.
+reset: This is a function to reset the error boundary. When executed, the function will try to re-render the route segment.
