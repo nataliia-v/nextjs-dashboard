@@ -52,7 +52,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
           <div id="customer-error" aria-live="polite" aria-atomic="true"> {/* aria-live="polite": The screen reader should politely notify the user when the error inside the div is updated. When the content changes (e.g. when a user corrects an error), the screen reader will announce these changes, but only when the user is idle so as not to interrupt them. */}
             { state.errors?.customerId &&
             state.errors.customerId.map((error: string) =>
-            <FormItemError error={error} />)}
+            <FormItemError key={error} error={error} />)}
             </div>
         </div>
 
@@ -74,7 +74,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
               <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
             {state.errors?.amount &&
-              state.errors.amount.map((error: string) => <FormItemError error={error} />)}
+              state.errors.amount.map((error: string) => <FormItemError key={error} error={error} />)}
           </div>
         </div>
 
@@ -116,7 +116,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                 </label>
               </div>
               {state.errors?.status &&
-              state.errors.status.map((error: string) => <FormItemError error={error} />)}
+              state.errors.status.map((error: string) => <FormItemError key={error} error={error} />)}
             </div>
           </div>
         </fieldset>
