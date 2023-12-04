@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useFormState } from 'react-dom';
 import {
   CheckIcon,
   ClockIcon,
@@ -7,12 +10,16 @@ import {
 } from '@heroicons/react/24/outline';
 import { CustomerField } from '@/app/lib/definitions';
 import { Button } from '@/app/(ui)/button';
-import { createInvoice } from '@/app/lib/actions';
+import { State, createInvoice  } from '@/app/lib/actions';
+import { FormItemError } from './form-item-error';
 
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
+  const initialState = { message: null, errors: {} };
+  const [state, dispatch] = useFormState(createInvoice, initialState);
+
   return (
-    <form action={ createInvoice }>
+    <form action={dispatch}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -23,9 +30,14 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
             <select
               id="customer"
               name="customerId"
+              aria-describedby="customer-error" 
               className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               defaultValue=""
             >
+              {/* aria-describedby="customer-error": This establishes a relationship between the select element and the error message container.
+                It indicates that the container with id="customer-error" describes the select element.
+                Screen readers will read this description when the user interacts with the select box to notify them of errors.
+                */}
               <option value="" disabled>
                 Select a customer
               </option>
@@ -37,6 +49,11 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
             </select>
             <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
           </div>
+          <div id="customer-error" aria-live="polite" aria-atomic="true"> {/* aria-live="polite": The screen reader should politely notify the user when the error inside the div is updated. When the content changes (e.g. when a user corrects an error), the screen reader will announce these changes, but only when the user is idle so as not to interrupt them. */}
+            { state.errors?.customerId &&
+            state.errors.customerId.map((error: string) =>
+            <FormItemError key={error} error={error} />)}
+            </div>
         </div>
 
         {/* Invoice Amount */}
@@ -56,6 +73,8 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
               />
               <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
+            {state.errors?.amount &&
+              state.errors.amount.map((error: string) => <FormItemError key={error} error={error} />)}
           </div>
         </div>
 
@@ -96,6 +115,8 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                   Paid <CheckIcon className="h-4 w-4" />
                 </label>
               </div>
+              {state.errors?.status &&
+              state.errors.status.map((error: string) => <FormItemError key={error} error={error} />)}
             </div>
           </div>
         </fieldset>

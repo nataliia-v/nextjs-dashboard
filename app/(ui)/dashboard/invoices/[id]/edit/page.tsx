@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Form from '@/app/(ui)/dashboard/invoices/edit-form';
 import Breadcrumbs from '@/app/(ui)/dashboard/invoices/breadcrumbs';
 import { fetchInvoiceById, fetchCustomers } from '@/app/lib/data';
- 
+
 export default async function Page({ params }: { params: { id: string } }) {
   const id = params.id;
   const [invoice, customers] = await Promise.all([
@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   if (!invoice) {
     notFound();
   }
-  
+
   return (
     <main>
       <Breadcrumbs
