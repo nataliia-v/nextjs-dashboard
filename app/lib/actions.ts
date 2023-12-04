@@ -23,12 +23,14 @@ const FormSchema = z.object({
 const CreateInvoice = FormSchema.omit({ id: true, date: true });
 const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 
+export type FormItems = {
+  customerId?: string[];
+  amount?: string[];
+  status?: string[];
+}
+
 export type State = {
-  errors?: {
-    customerId?: string[];
-    amount?: string[];
-    status?: string[];
-  };
+  errors?: FormItems;
   message?: string | null;
 };
  
