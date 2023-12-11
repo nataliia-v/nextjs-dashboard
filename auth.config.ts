@@ -1,4 +1,6 @@
 import type { NextAuthConfig } from 'next-auth';
+import GitHub from "next-auth/providers/github";
+import Google from "next-auth/providers/google";
 
 /* 
 Logic to protect routes. This will prevent users from accessing the dashboard pages unless they are logged in.
@@ -26,5 +28,8 @@ export const authConfig = {
       return true;
     },
   },
-  providers: [], // Add providers with an empty array for now
+  providers: [
+    GitHub,
+    Google,
+  ], // Add providers with an empty array for now
 } satisfies NextAuthConfig;
