@@ -49,3 +49,24 @@ For example Error component for invoices:
 Error Component accepts two props:
 error: This object is an instance of JavaScript's native Error object.
 reset: This is a function to reset the error boundary. When executed, the function will try to re-render the route segment.
+
+
+## 🍀 Adding authentication
+
+I used NextAuth.js to add authentication to application. NextAuth.js abstracts away much of the complexity involved in managing sessions, sign-in and sign-out, and other aspects of authentication. NextAuth.js simplifies the process, providing a unified solution for auth in Next.js applications.
+ 
+ 1. Install NextAuth (beta version of NextAuth.js, which is compatible with Next.js 14):
+ ```bash
+yarn add next-auth@beta
+``` 
+2. Generate a secret key (this key is used to encrypt cookies, ensuring the security of user sessions):
+```bash
+openssl rand -base64 32
+```
+3. Add generated key to the AUTH_SECRET variable in .env file:
+AUTH_SECRET=your-secret-key
+For auth to work in production, you'll need to update your environment variables in your Vercel project too. Check out this [guide](https://vercel.com/docs/projects/environment-variables) on how to add environment variables on Vercel.
+
+ user info: 
+Email: user@nextmail.com
+Password: 123456
