@@ -1,9 +1,18 @@
+import { Metadata, ResolvingMetadata } from 'next'
 import { notFound } from 'next/navigation';
 import Form from '@/app/(ui)/dashboard/invoices/edit-form';
 import Breadcrumbs from '@/app/(ui)/dashboard/invoices/breadcrumbs';
 import { fetchInvoiceById, fetchCustomers } from '@/app/lib/data';
 
-export default async function Page({ params }: { params: { id: string } }) {
+type Props = {
+  params: { id: string }
+}
+
+export const metadata: Metadata = {
+  title: 'Edit invoice',
+};
+
+export default async function Page({ params }: Props) {
   const id = params.id;
   const [invoice, customers] = await Promise.all([
     fetchInvoiceById(id),
